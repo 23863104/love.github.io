@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Do You Love Me?</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #ffebf2;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        .button {
+            padding: 10px 20px;
+            font-size: 18px;
+            margin-top: 10px;
+            background-color: #ff4d4d;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .button:hover {
+            background-color: #d43f3f;
+        }
+        .try-again {
+            color: #ff4d4d;
+            font-size: 20px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Do you love me? (Yes or No)</h1>
+    <input type="text" id="loveInput" placeholder="Enter Yes or No" />
+    <button class="button" onclick="checkLove()">Submit</button>
+    <p class="try-again" id="tryAgainMessage"></p>
+
+    <script>
+        let attempts = 0;
+
+        function checkLove() {
+            let loveAnswer = document.getElementById("loveInput").value.trim().toLowerCase();
+            let tryAgainMessage = document.getElementById("tryAgainMessage");
+
+            if (loveAnswer === "yes") {
+                window.location.href = "gift.html"; // Move to the gift page
+            } else if (loveAnswer === "no") {
+                attempts++;
+                if (attempts === 1) {
+                    tryAgainMessage.textContent = "Please think again! 💕";
+                } else if (attempts === 2) {
+                    tryAgainMessage.textContent = "Are you sure? Last chance! 😢";
+                } else {
+                    tryAgainMessage.textContent = "I’ll wait for you to change your mind. 😔";
+                }
+            } else {
+                tryAgainMessage.textContent = "Invalid answer. Please enter 'Yes' or 'No'.";
+            }
+        }
+    </script>
+</body>
+</html>
