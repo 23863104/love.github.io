@@ -53,12 +53,21 @@
             } else if (loveAnswer === "no") {
                 attempts++;
                 if (attempts === 1) {
-                    tryAgainMessage.textContent = "Please think again! 💕";
+                    tryAgainMessage.textContent = "Hayeee itne nirdayi 😱";
                 } else if (attempts === 2) {
-                    tryAgainMessage.textContent = "Are you sure? Last chance! 😢";
+                    tryAgainMessage.textContent = "Dekhh looo firrr 😔";
+                } else if (attempts === 3)  {
+                    tryAgainMessage.textContent = "Main rone bhi lgg jaunga firrr 😭";
+                } else if (attempts === 4) {
+                    tryAgainMessage.textContent = "Aree hat jaoo bsss 😩";
+                } else if (attempts === 5) {
+                    tryAgainMessage.textContent = "Aree firr aa gye tummm 🤨";    
+                } else if (attempts === 5) {
+                    tryAgainMessage.textContent = "Bsss bsss lgg gyaa abb toh mujhe ptaaaa ☹️";
                 } else {
-                    tryAgainMessage.textContent = "I’ll wait for you to change your mind. 😔";
-                }
+                    tryAgainMessage.textContent = "Bssss g yhh last attempt tha iske baad mtt bharna loop nhi h iske baad 🙂";
+                }    
+                    
             } else {
                 tryAgainMessage.textContent = "Invalid answer. Please enter 'Yes' or 'No'.";
             }
