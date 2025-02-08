@@ -72,11 +72,25 @@
             <p>Aage Badne ke liye kripya neeche vaale button prrr pyaar dikhaye 👇🏻🐱</p>
             <button class="button" onclick="nextStep()">Yooo, mujh prr hi 🥰</button>
         </div>
+
+         <div class="love-section" id="loveSection">
+            <h1>Do you love me? (Yes or No)</h1>
+            <div class="input-section">
+                <input type="text" id="loveInput" placeholder="Enter Yes or No" />
+                <button class="button" onclick="checkLove()">Submit</button>
+            </div>
+            <p class="try-again" id="tryAgainMessage"></p>
+        </div>
         
         <div class="gift-section" id="giftSection">
             <h1>Click the gift to open!</h1>
             <div class="gift-box" id="giftBox" onclick="openGift()"></div>
             <div class="message" id="message">Happy Propose Day! ❤️</div>
+
+            <video class="second-video" controls autoplay>
+                <source src="your-second-video.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
         </div>
     </div>
     
