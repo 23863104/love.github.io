@@ -8,7 +8,7 @@
         body {
             font-family: Arial, sans-serif;
             text-align: center;
-            background: url('https://cdn.pixabay.com/video/2021/04/26/70368-527489856_tiny.mp4') no-repeat center center/cover;
+            background-color: #ffebf2;
             overflow: hidden;
             height: 100vh;
             display: flex;
@@ -17,15 +17,23 @@
             flex-direction: column;
             position: relative;
         }
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .greeting-section, .gift-section {
+            display: none;
+        }
+        .visible {
+            display: block;
+        }
         .gift-box {
             width: 200px;
             height: 200px;
             background: url('https://img.icons8.com/color/200/gift.png') no-repeat center center/contain;
             cursor: pointer;
             transition: transform 0.5s ease-in-out;
-        }
-        .hidden {
-            display: none;
         }
         .message {
             font-size: 40px;
@@ -38,27 +46,45 @@
             0% { transform: scale(0); opacity: 0; }
             100% { transform: scale(1); opacity: 1; }
         }
-        .background-video {
-            position: fixed;
-            right: 0;
-            bottom: 0;
-            min-width: 100%;
-            min-height: 100%;
-            z-index: -1;
+        .button {
+            padding: 10px 20px;
+            font-size: 18px;
+            margin-top: 20px;
+            background-color: #ff4d4d;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .button:hover {
+            background-color: #d43f3f;
         }
     </style>
 </head>
 <body>
-    <video autoplay loop muted class="background-video">
-        <source src="https://cdn.pixabay.com/video/2021/04/26/70368-527489856_tiny.mp4" type="video/mp4">
-    </video>
-    <h1>Click the gift to open!</h1>
-    <div class="gift-box" id="giftBox" onclick="openGift()"></div>
-    <div class="message" id="message">Happy Propose Day! ❤️</div>
+    <div class="container">
+        <div class="greeting-section visible" id="greetingSection">
+            <h1>Hi there! Welcome to a special surprise! 🎉</h1>
+            <p>Are you ready for something amazing?</p>
+            <button class="button" onclick="nextStep()">Yes, Show me!</button>
+        </div>
+        
+        <div class="gift-section" id="giftSection">
+            <h1>Click the gift to open!</h1>
+            <div class="gift-box" id="giftBox" onclick="openGift()"></div>
+            <div class="message" id="message">Happy Propose Day! ❤️</div>
+        </div>
+    </div>
     
     <script>
+        function nextStep() {
+            document.getElementById("greetingSection").classList.remove("visible");
+            document.getElementById("greetingSection").style.display = "none";
+            document.getElementById("giftSection").classList.add("visible");
+        }
+        
         function openGift() {
-            document.getElementById("giftBox").classList.add("hidden");
+            document.getElementById("giftBox").style.display = "none";
             document.getElementById("message").style.display = "block";
         }
     </script>
