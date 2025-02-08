@@ -15,9 +15,14 @@
             height: 100vh;
             flex-direction: column;
         }
+        .gift-container {
+            position: relative;
+            width: 200px;
+            height: 200px;
+        }
         .gift-box {
-            width: 150px;
-            height: 150px;
+            width: 100%;
+            height: 100%;
             background-color: #ff4d4d;
             color: white;
             font-size: 20px;
@@ -27,28 +32,52 @@
             align-items: center;
             border-radius: 10px;
             cursor: pointer;
+            position: absolute;
+            transition: transform 0.5s ease-in-out;
+        }
+        .hidden {
+            transform: scale(0);
+        }
+        .message {
+            font-size: 24px;
+            color: #ff4d4d;
+            display: none;
+            font-weight: bold;
             margin-top: 20px;
         }
     </style>
 </head>
 <body>
     <h1>Click the gift to open!</h1>
-    <div class="gift-box" onclick="openGift()">🎁</div>
+    <div class="gift-container" id="giftContainer">
+        <div class="gift-box" id="giftBox">🎁</div>
+    </div>
+    <div class="message" id="message">Happy Propose Day! ❤️</div>
     
     <script>
         let giftCount = 6;
-        
+        let giftContainer = document.getElementById("giftContainer");
+        let giftBox = document.getElementById("giftBox");
+        let message = document.getElementById("message");
+
         function openGift() {
             if (giftCount > 0) {
-                document.querySelector(".gift-box").textContent = "🎁";
-                alert("There's another gift inside!");
+                let newGift = document.createElement("div");
+                newGift.className = "gift-box";
+                newGift.textContent = "🎁";
+                newGift.style.transform = "scale(0)";
+                giftContainer.appendChild(newGift);
+                setTimeout(() => newGift.style.transform = "scale(1)", 100);
+                giftBox.classList.add("hidden");
+                giftBox = newGift;
                 giftCount--;
             } else {
-                document.querySelector(".gift-box").textContent = "🎉";
-                alert("Happy Propose Day! ❤️");
-                document.querySelector("h1").textContent = "Happy Propose Day! ❤️";
+                giftBox.classList.add("hidden");
+                message.style.display = "block";
             }
         }
+
+        giftBox.addEventListener("click", openGift);
     </script>
 </body>
 </html>
