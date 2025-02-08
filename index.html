@@ -14,6 +14,7 @@
             align-items: center;
             height: 100vh;
             flex-direction: column;
+            position: relative;
         }
         h1 {
             color: #ff4d4d;
@@ -33,28 +34,39 @@
         .no {
             background-color: #ff4d4d;
             color: white;
+            position: absolute;
+        }
+        @keyframes shake {
+            0% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            50% { transform: translateX(10px); }
+            75% { transform: translateX(-10px); }
+            100% { transform: translateX(10px); }
         }
     </style>
 </head>
 <body>
     <h1 id="question">Do you love me?</h1>
     <button class="yes" onclick="yesAnswer()">Yes</button>
-    <button class="no" onclick="noAnswer()">No</button>
+    <button class="no" id="noButton" onclick="noAnswer()">No</button>
     
     <script>
         const messages = [
-            "Are you sure?",
-            "Think again...",
+            "Are you sure? 😏",
+            "Think again... 🤨",
             "Really? 😢",
-            "Please say yes...",
-            "Last chance..."
+            "Please say yes... 🥺",
+            "Last chance... 😱"
         ];
         let index = 0;
+        let noButton = document.getElementById("noButton");
         
         function noAnswer() {
             if (index < messages.length) {
                 document.getElementById("question").textContent = messages[index];
                 index++;
+                noButton.style.animation = "shake 0.3s ease-in-out";
+                setTimeout(() => noButton.style.animation = "", 300);
             } else {
                 alert("Fine... I'll stop asking 😞");
                 window.close();
