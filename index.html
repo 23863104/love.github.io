@@ -3,81 +3,83 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Surprise Gift!</title>
+    <title>Happy Propose Day!</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             text-align: center;
-            background-color: #ffe6e6;
+            background: url('https://source.unsplash.com/1600x900/?flowers,garden') no-repeat center center/cover;
+            overflow: hidden;
+            height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
             flex-direction: column;
-        }
-        .gift-container {
             position: relative;
-            width: 200px;
-            height: 200px;
         }
         .gift-box {
-            width: 100%;
-            height: 100%;
-            background-color: #ff4d4d;
-            color: white;
-            font-size: 20px;
-            font-weight: bold;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            border-radius: 10px;
+            width: 200px;
+            height: 200px;
+            background: url('https://img.icons8.com/color/200/gift.png') no-repeat center center/contain;
             cursor: pointer;
-            position: absolute;
             transition: transform 0.5s ease-in-out;
         }
         .hidden {
-            transform: scale(0);
+            display: none;
         }
         .message {
-            font-size: 24px;
+            font-size: 40px;
             color: #ff4d4d;
-            display: none;
             font-weight: bold;
-            margin-top: 20px;
+            display: none;
+            animation: pop 1s ease-in-out;
+        }
+        @keyframes pop {
+            0% { transform: scale(0); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        .birds {
+            position: absolute;
+            top: 10%;
+            left: 0;
+            width: 100%;
+            height: 20%;
+            background: url('https://i.gifer.com/7R8s.gif') repeat-x;
+            background-size: contain;
+            animation: fly 20s linear infinite;
+        }
+        @keyframes fly {
+            from { background-position: 100vw; }
+            to { background-position: -100vw; }
+        }
+        .butterflies {
+            position: absolute;
+            bottom: 10%;
+            left: 0;
+            width: 100%;
+            height: 30%;
+            background: url('https://i.gifer.com/fy96.gif') repeat-x;
+            background-size: contain;
+            animation: flutter 15s linear infinite;
+        }
+        @keyframes flutter {
+            from { background-position: -100vw; }
+            to { background-position: 100vw; }
         }
     </style>
 </head>
 <body>
+    <div class="birds"></div>
+    <div class="butterflies"></div>
     <h1>Click the gift to open!</h1>
-    <div class="gift-container" id="giftContainer">
-        <div class="gift-box" id="giftBox">🎁</div>
-    </div>
+    <div class="gift-box" id="giftBox" onclick="openGift()"></div>
     <div class="message" id="message">Happy Propose Day! ❤️</div>
     
     <script>
-        let giftCount = 6;
-        let giftContainer = document.getElementById("giftContainer");
-        let giftBox = document.getElementById("giftBox");
-        let message = document.getElementById("message");
-
         function openGift() {
-            if (giftCount > 0) {
-                let newGift = document.createElement("div");
-                newGift.className = "gift-box";
-                newGift.textContent = "🎁";
-                newGift.style.transform = "scale(0)";
-                giftContainer.appendChild(newGift);
-                setTimeout(() => newGift.style.transform = "scale(1)", 100);
-                giftBox.classList.add("hidden");
-                giftBox = newGift;
-                giftCount--;
-            } else {
-                giftBox.classList.add("hidden");
-                message.style.display = "block";
-            }
+            document.getElementById("giftBox").classList.add("hidden");
+            document.getElementById("message").style.display = "block";
         }
-
-        giftBox.addEventListener("click", openGift);
     </script>
 </body>
 </html>
